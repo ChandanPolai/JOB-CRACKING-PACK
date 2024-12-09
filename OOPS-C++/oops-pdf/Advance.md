@@ -22,3 +22,73 @@
 ---
 
 Yeh table tumhare interview preparation ke liye helpful rahega! Kisi specific concept me doubt ho to batao, aur detail me explain karunga. 😊
+
+Haan, **virtual class** ka concept bhi hota hai, lekin **virtual class** ek alag concept hai jo **virtual inheritance** se related hota hai. Isse samajhne ke liye, humein **inheritance** aur **virtual inheritance** ke baare mein thoda samajhna padega.
+
+### **Virtual Class in C++ (Virtual Inheritance)**:
+
+1. **Virtual Inheritance** ka use tab hota hai jab ek class do ya zyada base classes se inherit karti hai, aur dono base classes apne common **parent class** ko inherit kar rahi hoti hain.
+   
+2. Agar hum **normal inheritance** use karte hain, to dono base classes apne **parent class** ka alag-alag copy bana deti hain. Yeh problem create kar sakta hai, jise **diamond problem** kehte hain.
+
+3. **Virtual inheritance** ka use karke hum **diamond problem** ko solve kar sakte hain. Yeh ensure karta hai ki common parent class ka **sirf ek copy** ho, na ki multiple copies.
+
+---
+
+### **Virtual Class (Virtual Inheritance) Example:**
+
+```cpp
+#include <iostream>
+using namespace std;
+
+class A {
+public:
+    void show() {
+        cout << "Class A" << endl;
+    }
+};
+
+class B : virtual public A {  // Virtual inheritance
+public:
+    void showB() {
+        cout << "Class B" << endl;
+    }
+};
+
+class C : virtual public A {  // Virtual inheritance
+public:
+    void showC() {
+        cout << "Class C" << endl;
+    }
+};
+
+class D : public B, public C {
+public:
+    void showD() {
+        cout << "Class D" << endl;
+    }
+};
+
+int main() {
+    D obj;
+    obj.show();  // This will call A's show() function (only one copy)
+    obj.showB();  // Calls B's showB() function
+    obj.showC();  // Calls C's showC() function
+    obj.showD();  // Calls D's showD() function
+    return 0;
+}
+```
+
+### **Explanation:**
+- **Class A** is inherited by both **Class B** and **Class C** using **virtual inheritance**.
+- **Class D** inherits both **B** and **C**, and since **B** and **C** are virtually inheriting from **A**, **Class D** will have only **one copy of Class A**.
+- **show()** from **Class A** will be called only once, avoiding the diamond problem.
+
+### **Key Points**:
+- **Virtual Inheritance** ka use tab hota hai jab ek class ko multiple inheritance se access hota hai, aur unke common parent ko **ek hi copy** mein access karwana hota hai.
+- **Diamond problem** ko avoid karne ke liye virtual inheritance ka use kiya jata hai.
+
+---
+
+**Conclusion:**
+- **Virtual class** ek aisa class nahi hota, balki yeh **virtual inheritance** ka part hota hai, jo multiple inheritance ke case mein common parent class ki ek hi copy ko access karne ke liye use hota hai.
