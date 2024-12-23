@@ -138,4 +138,3 @@ END;
 3. Always test triggers for unintended side effects.
 4. Document triggers properly, as they may not be apparent in schema design.
 
-Agar tumhe specific triggers ke use case ya implementation ka example chahiye, to batao! 😊
